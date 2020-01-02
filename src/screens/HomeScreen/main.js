@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import firebase from "../../config";
 import LatestMovies from "./latestMovies";
 import RecentlyUploaded from "./recentlyUploaded";
-import DummyCard from "../../components/dummyCard";
-import MostDownloaded from "./mostDownloaded";
+import { Helmet } from "react-helmet";
+import ShowLoading from "../../components/loading";
 
 class HomeScreen extends Component {
   constructor() {
@@ -11,11 +11,11 @@ class HomeScreen extends Component {
     this.state = {
       latest: [],
       recent: [],
-      mostDownloaded: []
+      loading: true
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.fetchMovies("date");
     this.fetchMovies("time");
     this.fetchMovies("download");
@@ -42,11 +42,8 @@ class HomeScreen extends Component {
         });
       } else if (value === "time") {
         this.setState({
-          recent: movies
-        });
-      } else if (value === "dowload") {
-        this.setState({
-          mostDownloaded: movies
+          recent: movies,
+          loading: false
         });
       }
     });
@@ -54,10 +51,20 @@ class HomeScreen extends Component {
 
   render() {
     return (
+      <div>
+        <Helmet>
+          <title>MoviesDownload</title>
+        </Helmet>
+        {this.state.loading ? <ShowLoading /> : this.showContent()}
+      </div>
+    );
+  }
+
+  showContent() {
+    return (
       <div className="container">
         <LatestMovies list={this.state.latest} />
         <RecentlyUploaded list={this.state.recent} />
-        {/* <MostDownloaded list={this.state.mostDownloaded} /> */}
       </div>
     );
   }

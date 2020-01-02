@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import firebase from "../../config";
 import MovieCard from "../../components/movieCard";
+import Loading from "../../components/loading";
+import NotFound from "../../components/notFound";
 
 class GenereList extends Component {
   constructor() {
     super();
     this.state = {
-      movies: []
+      movies: [],
+      loading: true
     };
   }
 
@@ -18,23 +21,41 @@ class GenereList extends Component {
     const movies = firebase
       .database()
       .ref()
-      .orderByChild("generes")
-      .equalTo(genere);
+      .orderByChild("generes");
 
     movies.on("value", snapshot => {
       let list = [];
+      let genereMovies = [];
       snapshot.forEach(childSnapshot => {
         let id = { key: childSnapshot.key };
         let tmp = { ...id, ...childSnapshot.val() };
         list.push(tmp);
       });
+      list.map(item => {
+        item.generes.map(g => {
+          if (g === genere) {
+            genereMovies.push(item);
+          }
+        });
+      });
       this.setState({
-        movies: list
+        movies: genereMovies,
+        loading: false
       });
     });
   }
 
   render() {
+    return this.state.loading ? (
+      <Loading />
+    ) : this.state.movies.length === 0 ? (
+      <NotFound />
+    ) : (
+      this.showContent()
+    );
+  }
+
+  showContent() {
     return (
       <div className="container">
         <div className="d-flex justify-content-between my-5">

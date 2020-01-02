@@ -5,7 +5,7 @@ import Download from "./download";
 import Recommended from "./recommended";
 import firebase from "../../config";
 import { useParams } from "react-router-dom";
-import {} from "react-router";
+import { Helmet } from "react-helmet";
 
 class DetailScreen extends Component {
   constructor() {
@@ -63,7 +63,7 @@ class DetailScreen extends Component {
           stars: mov.stars,
           size: mov.size,
           format: mov.format,
-          languages: mov.languages,
+          languages: mov.language,
           trailor: mov.trailor,
           time: mov.time
         },
@@ -78,6 +78,9 @@ class DetailScreen extends Component {
   render() {
     return (
       <div className="container">
+        <Helmet>
+          <title>{this.state.name + "- moviesDownload"}</title>
+        </Helmet>
         <h2 className="display-3 p-4">{this.state.name}</h2>
         <Detail detail={this.state.detail} />
         <Description description={this.state.description} />

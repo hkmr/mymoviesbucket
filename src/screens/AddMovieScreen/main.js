@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import firebase from "../../config.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import { Helmet } from "react-helmet";
 
 class AddMovie extends Component {
+  defaultState = { generes: [] };
   constructor() {
     super();
     this.state = {
@@ -71,18 +75,39 @@ class AddMovie extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({ date: Date.now(), download: 0 });
-    console.log(this.state);
+    this.setState({ uploadedOn: Date.now(), download: 0 });
     const itemRef = firebase.database().ref();
     itemRef.push(this.state);
+    this.notify();
+    this.myFormRef.reset();
+    window.scroll(0, 0);
+  };
+
+  notify = () => {
+    toast.success("successfully! uploaded", {
+      position: "top-center",
+      autoClose: 2000,
+      closeOnClick: true,
+      draggable: true
+    });
   };
 
   render() {
     return (
       <div className="container mt-5">
-        <h1 className="display-4">Add Movie</h1>
-
-        <form onSubmit={this.handleSubmit}>
+        <Helmet>
+          <title>Add Movie</title>
+        </Helmet>
+        <ToastContainer
+          position="top-center"
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+        />
+        <h1 id="display-4">Add Movie</h1>
+        <form ref={el => (this.myFormRef = el)} onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">Movie Name</label>
             <input
@@ -91,7 +116,6 @@ class AddMovie extends Component {
               className="form-control"
               placeholder="Enter Movie Name"
               onChange={this.updateInput}
-              required
             />
             <div className="invalid-feedback">Please provide Movie Name.</div>
           </div>
@@ -152,9 +176,8 @@ class AddMovie extends Component {
               name="image"
               type="text"
               onChange={this.updateInput}
-              className="form-control-file"
+              className="form-control"
               placeholder="Enter movie Image url"
-              required
             />
           </div>
 
@@ -187,6 +210,17 @@ class AddMovie extends Component {
               onChange={this.updateInput}
               className="form-control"
               placeholder="Director Name"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="language">Language</label>
+            <input
+              type="text"
+              name="language"
+              onChange={this.updateInput}
+              className="form-control"
+              placeholder="Movie language"
             />
           </div>
 

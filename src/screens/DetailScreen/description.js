@@ -52,7 +52,7 @@ class Description extends Component {
             </tr>
             <tr>
               <td className="font-weight-bold">Generes</td>
-              <td> {this.props.description.generes} </td>
+              <td>{this.props.description.generes}</td>
             </tr>
             <tr>
               <td className="font-weight-bold">Language</td>

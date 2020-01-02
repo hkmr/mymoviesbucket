@@ -66,16 +66,16 @@ class Footer extends Component {
 
               <ul className="list-unstyled">
                 <li>
-                  <a href="/">Link 1</a>
+                  <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="/">Link 2</a>
+                  <a href="/about">About</a>
                 </li>
                 <li>
-                  <a href="/">Link 3</a>
+                  <a href="/feedback">feedback</a>
                 </li>
                 <li>
-                  <a href="/">Link 4</a>
+                  <a href="/terms">Terms/Condtions</a>
                 </li>
               </ul>
             </div>

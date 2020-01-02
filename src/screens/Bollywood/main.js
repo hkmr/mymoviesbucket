@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import firebase from "../../config";
 import MovieCard from "../../components/movieCard";
+import { Helmet } from "react-helmet";
+import Loading from "../../components/loading";
+import NotFound from "../../components/notFound";
 
 class BollyWood extends Component {
   constructor() {
     super();
-    this.state = { bollywoodMovies: [] };
+    this.state = { bollywoodMovies: [], loading: true };
   }
 
   componentDidMount() {
@@ -17,7 +20,7 @@ class BollyWood extends Component {
       .database()
       .ref()
       .orderByChild("industry")
-      .equalTo("bollywood");
+      .equalTo("Bollywood");
 
     ref.on("value", snapshot => {
       let movies = [];
@@ -26,24 +29,39 @@ class BollyWood extends Component {
         let tmp = { ...key, ...childSnap.val() };
         movies.push(tmp);
       });
-      this.setState({ bollywoodMovies: movies });
+      this.setState({ bollywoodMovies: movies, loading: false });
     });
   };
 
   render() {
     return (
       <div className="container">
-        <h1>BollyWood</h1>
-        <div className="row align-items-center">
-          {this.state.bollywoodMovies.map(item => {
-            console.log(item);
-            return (
-              <div key={item} className="col-sm">
-                <MovieCard detail={item} />
-              </div>
-            );
-          })}
-        </div>
+        <Helmet>
+          <title>BollyWood - moviesDownload</title>
+        </Helmet>
+        <h1 className="display-3 m-3">BollyWood</h1>
+        {this.state.loading ? (
+          <Loading />
+        ) : this.state.bollywoodMovies.length === 0 ? (
+          <NotFound />
+        ) : (
+          this.showContent()
+        )}
+      </div>
+    );
+  }
+
+  showContent() {
+    return (
+      <div className="row align-items-center">
+        {this.state.bollywoodMovies.map(item => {
+          console.log(item);
+          return (
+            <div key={item} className="col-sm">
+              <MovieCard detail={item} />
+            </div>
+          );
+        })}
       </div>
     );
   }

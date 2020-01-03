@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 class MovieCard extends Component {
   render() {
     return (
-      <div className="card text-white bg-dark mb-3 movie-card">
+      <div className="card text-white bg-dark mb-3">
         <img className="card-img-top" src={this.props.detail.image} />
         <div className="card-body ">
           <h4 className="card-title d-flex justify-content-center">

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import MovieCard from "../../components/movieCard";
 import firebase from "../../config";
+import Loading from "../../components/loading";
+import { Helmet } from "react-helmet";
 
 class Latest extends Component {
   constructor() {
     super();
-    this.state = { latestMovies: [] };
+    this.state = { latestMovies: [], loading: true };
   }
 
   componentDidMount() {
@@ -25,18 +27,38 @@ class Latest extends Component {
         let tmp = { ...key, ...childSnapshot.val() };
         latestMovies.push(tmp);
       });
+      latestMovies.reverse();
       this.setState({
-        latestMovies: latestMovies
+        latestMovies: latestMovies,
+        loading: false
       });
-      console.log(this.state);
     });
   }
 
   render() {
     return (
+      <div>
+        <Helmet>
+          <title>Latest Movies - moviesDownload</title>
+        </Helmet>
+        {this.state.loading ? <Loading /> : this.showContent()}
+      </div>
+    );
+  }
+
+  showContent() {
+    return (
       <div className="container">
-        <h1>Latest Movies</h1>
-        <div className="row align-items-center" />
+        <h4 className="m-4">Latest Movies</h4>
+        <div className="row align-items-start">
+          {this.state.latestMovies.map(item => {
+            return (
+              <div key={item.key} className="col-md-3">
+                <MovieCard detail={item} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

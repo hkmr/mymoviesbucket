@@ -12,10 +12,10 @@ class RecentlyUploaded extends Component {
             <Link to="/recent">see all</Link>
           </h5>
         </div>
-        <div className="row align-items-center">
+        <div className="row align-items-start">
           {this.props.list.map(item => {
             return (
-              <div key={item.key} className="col-sm">
+              <div key={item.key} className="col-md-3">
                 <MovieCard detail={item} />
               </div>
             );

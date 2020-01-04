@@ -59,6 +59,7 @@ class AddMovie extends Component {
     if (e.target.type === "checkbox") {
       this.updateGenere(e);
     }
+    console.log(this.state);
   };
 
   updateGenere = e => {
@@ -149,6 +150,9 @@ class AddMovie extends Component {
               type="number"
               onChange={this.updateInput}
               placeholder="IMDB rating between 0 - 10"
+              step="0.1"
+              min="1.0"
+              max="10.0"
             />
           </div>
 
@@ -159,6 +163,7 @@ class AddMovie extends Component {
               className="form-control"
               hmtlfor="industry"
               onChange={this.updateInput}
+              onFocus={this.updateInput}
             >
               {this.industry.map(item => {
                 return (
@@ -251,6 +256,7 @@ class AddMovie extends Component {
             <select
               name="format"
               onChange={this.updateInput}
+              onFocus={this.updateInput}
               className="form-control"
             >
               <option value="mp4">mp4</option>

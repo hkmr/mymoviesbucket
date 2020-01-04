@@ -35,7 +35,7 @@ class HomeScreen extends Component {
         movies.push(tmp);
       });
       movies.reverse();
-      movies = movies.slice(0, 12);
+      movies = movies.slice(0, 8);
       if (value === "date") {
         this.setState({
           latest: movies

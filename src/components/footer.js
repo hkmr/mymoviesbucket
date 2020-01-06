@@ -88,7 +88,7 @@ class Footer extends Component {
 
         <div className="footer-copyright text-center py-3">
           © 2018 Copyright:
-          <a href="#"> MoviesDownload.com</a>
+          <a href="/"> MoviesDownload.com</a>
         </div>
       </footer>
     );

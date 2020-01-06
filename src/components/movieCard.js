@@ -5,7 +5,14 @@ class MovieCard extends Component {
   render() {
     return (
       <div className="card text-white bg-dark mb-3">
-        <img className="card-img-top" src={this.props.detail.image} />
+        <Link
+          to={{
+            pathname: `/movies/${this.props.detail.key}`,
+            movie: this.props.detail
+          }}
+        >
+          <img className="card-img-top" src={this.props.detail.image} />
+        </Link>
         <div className="card-body ">
           <h4 className="card-title d-flex justify-content-center">
             {this.props.detail.name}

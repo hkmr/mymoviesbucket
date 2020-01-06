@@ -13,6 +13,7 @@ import Hollywood from "./screens/Hollywood/main";
 import Bollywood from "./screens/Bollywood/main";
 import Genere from "./screens/generes/main";
 import PageNotFound from "./screens/404";
+import Search from "./screens/search/main";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/most-downladed" component={MostDowloaded} />
           <Route path="/bollywood" component={Bollywood} />
           <Route path="/hollywood" component={Hollywood} />
+          <Route path="/search" component={Search} />
           <Route path="/genere/:id" exact component={Genere} />
           <Route component={PageNotFound} />
         </Switch>

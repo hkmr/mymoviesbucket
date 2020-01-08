@@ -7,18 +7,27 @@ import { Helmet } from "react-helmet";
 class Latest extends Component {
   constructor() {
     super();
-    this.state = { latestMovies: [], loading: true };
+    this.state = {
+      latestMovies: [],
+      loading: true
+    };
   }
 
   componentDidMount() {
     this.fetchMovies();
+    window.addEventListener("scroll", this.onScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll, false);
   }
 
   fetchMovies() {
-    const ref = firebase
+    let ref = firebase
       .database()
       .ref()
-      .orderByChild("date");
+      .orderByChild("date")
+      .limitToFirst(8);
 
     ref.on("value", snapshot => {
       let latestMovies = [];
@@ -27,7 +36,7 @@ class Latest extends Component {
         let tmp = { ...key, ...childSnapshot.val() };
         latestMovies.push(tmp);
       });
-      latestMovies.reverse();
+      // latestMovies.reverse();
       this.setState({
         latestMovies: latestMovies,
         loading: false
@@ -35,13 +44,26 @@ class Latest extends Component {
     });
   }
 
+  onScroll = () => {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 500
+    ) {
+    }
+  };
+
   render() {
     return (
       <div>
         <Helmet>
           <title>Latest Movies - moviesDownload</title>
         </Helmet>
-        {this.state.loading ? <Loading /> : this.showContent()}
+        {this.showContent()}
+        {this.state.loading ? (
+          <Loading />
+        ) : (
+          <div className="text-center primary">Load more</div>
+        )}
       </div>
     );
   }

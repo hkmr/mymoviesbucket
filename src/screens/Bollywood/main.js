@@ -53,11 +53,11 @@ class BollyWood extends Component {
 
   showContent() {
     return (
-      <div className="row align-items-center">
+      <div className="row align-items-start">
         {this.state.bollywoodMovies.map(item => {
           console.log(item);
           return (
-            <div key={item} className="col-sm">
+            <div key={item} className="col-md-3">
               <MovieCard detail={item} />
             </div>
           );

@@ -35,7 +35,7 @@ class Navbar extends Component {
           </ul>
           <div className="form-inline my-2 my-lg-0">
             <Link to="/search">
-              <img src={Search} color="white" />
+              <img src={Search} alt="Search Icon" color="white" />
             </Link>
           </div>
         </div>

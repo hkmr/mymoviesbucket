@@ -28,7 +28,9 @@ class HollyWood extends Component {
     ref.on("value", snapshot => {
       let movies = [];
       snapshot.forEach(childSnapshot => {
-        movies.push(childSnapshot.val());
+        let key = { key: childSnapshot.key };
+        let tmp = { ...key, ...childSnapshot.val() };
+        movies.push(tmp);
       });
       this.setState({ hollywoodMovies: movies, loading: false });
     });
@@ -54,10 +56,10 @@ class HollyWood extends Component {
 
   showContent() {
     return (
-      <div className="row align-items-center">
+      <div className="row align-items-start">
         {this.state.hollywoodMovies.map(item => {
           return (
-            <div className="col-sm">
+            <div className="col-md-3">
               <MovieCard detail={item} />
             </div>
           );

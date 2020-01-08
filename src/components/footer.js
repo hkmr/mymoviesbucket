@@ -11,9 +11,8 @@ class Footer extends Component {
                 Movies Download
               </h5>
               <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit
+                It is a website which helps you to download the latest movies of
+                all kind without any charges.
               </p>
             </div>
             <hr className="clearfix w-100 d-md-none" />
@@ -24,16 +23,16 @@ class Footer extends Component {
               </h5>
               <ul className="list-unstyled">
                 <li>
-                  <a href="/">Link 1</a>
+                  <a href="/">2020</a>
                 </li>
                 <li>
-                  <a href="/">Link 1</a>
+                  <a href="/">2019</a>
                 </li>
                 <li>
-                  <a href="/">Link 1</a>
+                  <a href="/">2018</a>
                 </li>
                 <li>
-                  <a href="/">Link 1</a>
+                  <a href="/">2017</a>
                 </li>
               </ul>
             </div>
@@ -45,16 +44,16 @@ class Footer extends Component {
 
               <ul className="list-unstyled">
                 <li>
-                  <a href="/">Link 1</a>
+                  <a href="/">10.0 - 9.0</a>
                 </li>
                 <li>
-                  <a href="/">Link 2</a>
+                  <a href="/">9.0 - 8.0</a>
                 </li>
                 <li>
-                  <a href="/">Link 3</a>
+                  <a href="/">8.0 - 7.0</a>
                 </li>
                 <li>
-                  <a href="/">Link 4</a>
+                  <a href="/">7.0 - 6.0</a>
                 </li>
               </ul>
             </div>

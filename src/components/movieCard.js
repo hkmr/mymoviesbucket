@@ -11,7 +11,11 @@ class MovieCard extends Component {
             movie: this.props.detail
           }}
         >
-          <img className="card-img-top" src={this.props.detail.image} />
+          <img
+            className="card-img-top"
+            alt={this.props.detail.name}
+            src={this.props.detail.image}
+          />
         </Link>
         <div className="card-body ">
           <h4 className="card-title d-flex justify-content-center">

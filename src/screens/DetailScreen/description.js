@@ -41,6 +41,7 @@ class Description extends Component {
   };
 
   render() {
+    console.log(this.props.description.generes);
     return (
       <div className="container">
         <h1 className="mt-4 mb-4 md-4 h1">Description</h1>
@@ -72,7 +73,10 @@ class Description extends Component {
             </tr>
             <tr>
               <td className="font-weight-bold">File Size</td>
-              <td> {this.props.description.size} GB </td>
+              <td>
+                {this.props.description.size}
+                {this.props.description.size <= 4 ? " GB" : " MB"}
+              </td>
             </tr>
             <tr>
               <td className="font-weight-bold">File Format</td>
@@ -82,6 +86,7 @@ class Description extends Component {
               <td className="font-weight-bold">Trailor</td>
               <td>
                 <iframe
+                  title="Video Trailor"
                   max-width="600"
                   max-height="600"
                   src={this.props.description.trailor}

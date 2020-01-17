@@ -49,7 +49,9 @@ class Recent extends Component {
   showContent() {
     return (
       <div className="container">
-        <h4 className="m-4">Recently Uploaded Movies</h4>
+        <h4 className="m-4">
+          Recently Uploaded Movies ({this.state.recentMovies.length})
+        </h4>
         <div className="row align-items-start">
           {this.state.recentMovies.map(item => {
             return (

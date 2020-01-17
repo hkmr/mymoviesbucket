@@ -13,14 +13,14 @@ class Navbar extends Component {
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
+          data-target="#navbarToggler"
+          aria-controls="navbarToggler"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div className="collapse navbar-collapse" id="navbarToggler">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item">
               <a className="nav-link" href="/hollywood">
@@ -30,6 +30,11 @@ class Navbar extends Component {
             <li className="nav-item">
               <a className="nav-link" href="/bollywood">
                 Bollywood
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/bollywood">
+                Web Series
               </a>
             </li>
           </ul>

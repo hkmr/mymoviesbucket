@@ -75,6 +75,64 @@ class DetailScreen extends Component {
     });
   }
 
+  // use incomplete
+  fetchRecommendedMovies = () => {
+    let language = this.state.description.languages;
+    let director = this.state.description.director;
+    let industry = this.state.description.industry;
+
+    let languageMovie = [];
+    const recommendedMoviesByLanguage = firebase
+      .database()
+      .ref()
+      .orderByChild("language")
+      .equalTo(language);
+    recommendedMoviesByLanguage.on("value", snapshot => {
+      snapshot.forEach(childSnapshot => {
+        let key = { key: childSnapshot.key };
+        let tmp = { ...key, ...childSnapshot.val() };
+        languageMovie.push(tmp);
+      });
+    });
+
+    let directorMovie = [];
+    const recommendedMoviesByDirector = firebase
+      .database()
+      .ref()
+      .orderByChild("director")
+      .equalTo(director);
+    recommendedMoviesByDirector.on("value", snapshot => {
+      snapshot.forEach(childSnapshot => {
+        let key = { key: childSnapshot.key };
+        let tmp = { ...key, ...childSnapshot.val() };
+        directorMovie.push(tmp);
+      });
+    });
+
+    let industryMovie = [];
+    const recommendedMoviesByIndustry = firebase
+      .database()
+      .ref()
+      .orderByChild("industry")
+      .equalTo(industry);
+    recommendedMoviesByIndustry.on("value", snapshot => {
+      snapshot.forEach(childSnapshot => {
+        let key = { key: childSnapshot.key };
+        let tmp = { ...key, ...childSnapshot.val() };
+        industryMovie.push(tmp);
+      });
+    });
+
+    console.log(
+      "Language : ",
+      languageMovie,
+      " Director : ",
+      directorMovie,
+      "Industry : ",
+      industryMovie
+    );
+  };
+
   render() {
     return (
       <div className="container">

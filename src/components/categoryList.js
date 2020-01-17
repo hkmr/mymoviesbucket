@@ -29,7 +29,7 @@ class CategoryList extends Component {
         <div className="category-item" />
         {this.generes.map(item => {
           return (
-            <div key={item} className="category-item">
+            <div key={item} className="category-item mr-3">
               <a href={`/genere/${item}`}>{item}</a>
             </div>
           );

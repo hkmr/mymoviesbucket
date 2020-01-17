@@ -248,6 +248,7 @@ class AddMovie extends Component {
               onChange={this.updateInput}
               className="form-control"
               placeholder="Movie File Size"
+              step="0.01"
             />
           </div>
 

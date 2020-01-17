@@ -12,10 +12,10 @@ class LatestMovies extends Component {
             <Link to="/latest">see all</Link>
           </h5>
         </div>
-        <div className="row align-items-start">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 align-items-start">
           {this.props.list.map(item => {
             return (
-              <div key={item.key} className="col-md-3">
+              <div key={item.key} className="col">
                 <MovieCard detail={item} />
               </div>
             );

@@ -41,11 +41,10 @@ class Description extends Component {
   };
 
   render() {
-    console.log(this.props.description.generes);
     return (
       <div className="container">
         <h1 className="mt-4 mb-4 md-4 h1">Description</h1>
-        <table className="table table-borderless">
+        <table className="table-responsive-sm table-striped table-borderless">
           <tbody>
             <tr>
               <td className="font-weight-bold">Released Date</td>
@@ -84,17 +83,17 @@ class Description extends Component {
             </tr>
             <tr>
               <td className="font-weight-bold">Trailor</td>
-              <td>
-                <iframe
-                  title="Video Trailor"
-                  max-width="600"
-                  max-height="600"
-                  src={this.props.description.trailor}
-                  frameborder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                />
-              </td>
+            </tr>
+            <tr>
+              <iframe
+                title="Video Trailor"
+                max-width="600"
+                max-height="600"
+                src={this.props.description.trailor}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </tr>
           </tbody>
         </table>
